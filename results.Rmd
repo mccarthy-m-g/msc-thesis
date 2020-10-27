@@ -1,6 +1,2 @@
 # Results
 
-```{r}
-library(tidyverse)
-```
-
