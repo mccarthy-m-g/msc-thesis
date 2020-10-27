@@ -1,0 +1,397 @@
+--- 
+title: "MSc Thesis"
+shorttitle: "MSc Thesis"
+
+author: Michael McCarthy^[University of Calgary, michael.mccarthy@ucalgary.ca]
+
+date: "`r Sys.Date()`"
+
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: ["`r rbbt::bbt_write_bib('references.json', overwrite = TRUE)`", "r-packages.bib"]
+biblio-style: "apa.csl"
+link-citations: yes
+
+github-repo: mccarthy-m-g/msc-thesis
+
+favicon: www/favicon.ico
+cover-image: 
+description: "Michael McCarthy's work-in-progress MSc thesis."
+---
+```{r include=FALSE, cache=FALSE}
+set.seed(1014)
+options(digits = 3)
+
+###############################################################################
+## setup
+###############################################################################
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  cache = TRUE,
+  fig.retina = 0.8, # figures are either vectors or 300 dpi diagrams
+  dpi = 300,
+  out.width = "70%",
+  fig.align = 'center',
+  fig.width = 6,
+  fig.asp = 0.618,  # 1 / phi
+  fig.show = "hold",
+  eval.after = 'fig.cap' # so captions can use link to demos
+)
+
+options(dplyr.print_min = 6,
+        dplyr.print_max = 6,
+        knitr.graphics.auto_pdf = TRUE)
+```
+
+```{r setup, include=FALSE}
+renv::snapshot()
+```
+
+# Welcome {-}
+
+This is the online, work-in-progress, version of my MSC thesis.
+
+<!--chapter:end:index.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+set.seed(1014)
+options(digits = 3)
+
+###############################################################################
+## setup
+###############################################################################
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  cache = TRUE,
+  fig.retina = 0.8, # figures are either vectors or 300 dpi diagrams
+  dpi = 300,
+  out.width = "70%",
+  fig.align = 'center',
+  fig.width = 6,
+  fig.asp = 0.618,  # 1 / phi
+  fig.show = "hold",
+  eval.after = 'fig.cap' # so captions can use link to demos
+)
+
+options(dplyr.print_min = 6,
+        dplyr.print_max = 6,
+        knitr.graphics.auto_pdf = TRUE)
+```
+# Preface {#preface}
+
+## Acknowledgments
+
+A big thank you to everyone who has supported me on this journey.
+
+```{r, echo=FALSE}
+# code taken from: https://github.com/hadley/mastering-shiny/blob/master/introduction.Rmd
+library(magrittr)
+contribs_all_json <- gh::gh("/repos/:owner/:repo/contributors",
+  owner = "mccarthy-m-g",
+  repo = "bookdown-thesis-template",
+  .limit = Inf
+)
+contribs_all <- tibble::tibble(
+  login = contribs_all_json %>% purrr::map_chr("login"),
+  n = contribs_all_json %>% purrr::map_int("contributions")
+)
+contribs_old <- readr::read_csv("contributors.csv", col_types = list())
+contribs_new <- contribs_all %>% dplyr::anti_join(contribs_old, by = "login")
+# Get info for new contributors
+needed_json <- purrr::map(
+  contribs_new$login, 
+  ~ gh::gh("/users/:username", username = .x)
+)
+info_new <- tibble::tibble(
+  login = contribs_new$login,
+  name = purrr::map_chr(needed_json, "name", .default = NA),
+  blog = purrr::map_chr(needed_json, "blog", .default = NA)
+)
+info_old <- contribs_old %>% dplyr::select(login, name, blog)
+info_all <- dplyr::bind_rows(info_old, info_new)
+contribs_all <- contribs_all %>% 
+  dplyr::left_join(info_all, by = "login") %>% 
+  dplyr::arrange(login)
+readr::write_csv(contribs_all, "contributors.csv")
+```
+
+```{r, echo=FALSE, results = "asis", message = FALSE}
+# code modified from: https://github.com/hadley/mastering-shiny/blob/master/introduction.Rmd
+contributors <- read.csv("contributors.csv", stringsAsFactors = FALSE)
+contributors <- contributors %>% 
+  dplyr::filter(login != "mccarthy-m-g") %>% 
+  dplyr::mutate(
+    login = paste0("\\@", login),
+    desc = ifelse(is.na(name), login, paste0(name, " (", login, ")"))
+  )
+if (nrow(contributors) != 0) {
+  cat("This thesis was written in the open, and many people have contributed fixes and improvements. A big thank you to all ", nrow(contributors), " people who contributed via GitHub pull requests (in alphabetical order by username): ", sep = "")
+  cat(paste0(contributors$desc, collapse = ", "))
+  cat(".\n")
+}
+```
+
+## Colophon
+
+This thesis was written in [RStudio](http://www.rstudio.com/ide/) using [bookdown](http://bookdown.org/). The online version of this thesis is available at https://mccarthymg-msc-thesis.netlify.app/. It is hosted with [netlify](http://netlify.com/), and is automatically updated after every commit by [GitHub Actions](https://help.github.com/en/actions). The complete source is available at https://github.com/mccarthy-m-g/msc-thesis.
+
+This version of the template was built with `r R.version.string` and the following packages:
+
+```{r, echo=FALSE, results="asis", warning=FALSE, message=FALSE}
+# read renv.lock
+renvLock <- jsonlite::read_json("renv.lock")
+# write R packages from renv.lock to r-packages.bib
+knitr::write_bib(names(renvLock$Packages), "r-packages.bib")
+# get location of package versions and sources
+pkg_version <- paste0("renvLock$Packages$", names(renvLock$Packages), "$Version")
+pkg_source <- paste0("renvLock$Packages$", names(renvLock$Packages), "$Repository")
+
+# create tibble of packages, their versions, and their source
+df <- tibble::tibble(
+  package = names(renvLock$Packages),
+  version = sapply(pkg_version, function(x) eval(parse(text = x))),
+  source = sapply(pkg_source, function(x) eval(parse(text = x)))
+)
+knitr::kable(df, format = "markdown")
+```
+
+```{r, echo=FALSE}
+# code taken from: https://github.com/hadley/mastering-shiny/blob/master/introduction.Rmd
+ruler <- function(width = getOption("width")) {
+  x <- seq_len(width)
+  y <- dplyr::case_when(
+    x %% 10 == 0 ~ as.character((x %/% 10) %% 10),
+    x %% 5 == 0  ~ "+",
+    TRUE         ~ "-"
+  )
+  cat(y, "\n", sep = "")
+  cat(x %% 10, "\n", sep = "")
+}
+```
+```{r, echo=FALSE, include = FALSE}
+ruler()
+```
+
+<!--chapter:end:preface.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+set.seed(1014)
+options(digits = 3)
+
+###############################################################################
+## setup
+###############################################################################
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  cache = TRUE,
+  fig.retina = 0.8, # figures are either vectors or 300 dpi diagrams
+  dpi = 300,
+  out.width = "70%",
+  fig.align = 'center',
+  fig.width = 6,
+  fig.asp = 0.618,  # 1 / phi
+  fig.show = "hold",
+  eval.after = 'fig.cap' # so captions can use link to demos
+)
+
+options(dplyr.print_min = 6,
+        dplyr.print_max = 6,
+        knitr.graphics.auto_pdf = TRUE)
+```
+# (PART) Research Proposal {-}
+
+# CGS-M
+
+@holbourn_MechanicsHeadInjuries_1943
+
+<!--chapter:end:research-proposal.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+set.seed(1014)
+options(digits = 3)
+
+###############################################################################
+## setup
+###############################################################################
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  cache = TRUE,
+  fig.retina = 0.8, # figures are either vectors or 300 dpi diagrams
+  dpi = 300,
+  out.width = "70%",
+  fig.align = 'center',
+  fig.width = 6,
+  fig.asp = 0.618,  # 1 / phi
+  fig.show = "hold",
+  eval.after = 'fig.cap' # so captions can use link to demos
+)
+
+options(dplyr.print_min = 6,
+        dplyr.print_max = 6,
+        knitr.graphics.auto_pdf = TRUE)
+```
+# (PART) Example Chapters {-}
+
+# Introduction
+
+
+<!--chapter:end:introduction.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+set.seed(1014)
+options(digits = 3)
+
+###############################################################################
+## setup
+###############################################################################
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  cache = TRUE,
+  fig.retina = 0.8, # figures are either vectors or 300 dpi diagrams
+  dpi = 300,
+  out.width = "70%",
+  fig.align = 'center',
+  fig.width = 6,
+  fig.asp = 0.618,  # 1 / phi
+  fig.show = "hold",
+  eval.after = 'fig.cap' # so captions can use link to demos
+)
+
+options(dplyr.print_min = 6,
+        dplyr.print_max = 6,
+        knitr.graphics.auto_pdf = TRUE)
+```
+# Methodology
+
+
+<!--chapter:end:methodology.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+set.seed(1014)
+options(digits = 3)
+
+###############################################################################
+## setup
+###############################################################################
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  cache = TRUE,
+  fig.retina = 0.8, # figures are either vectors or 300 dpi diagrams
+  dpi = 300,
+  out.width = "70%",
+  fig.align = 'center',
+  fig.width = 6,
+  fig.asp = 0.618,  # 1 / phi
+  fig.show = "hold",
+  eval.after = 'fig.cap' # so captions can use link to demos
+)
+
+options(dplyr.print_min = 6,
+        dplyr.print_max = 6,
+        knitr.graphics.auto_pdf = TRUE)
+```
+# Results
+
+
+<!--chapter:end:results.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+set.seed(1014)
+options(digits = 3)
+
+###############################################################################
+## setup
+###############################################################################
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  cache = TRUE,
+  fig.retina = 0.8, # figures are either vectors or 300 dpi diagrams
+  dpi = 300,
+  out.width = "70%",
+  fig.align = 'center',
+  fig.width = 6,
+  fig.asp = 0.618,  # 1 / phi
+  fig.show = "hold",
+  eval.after = 'fig.cap' # so captions can use link to demos
+)
+
+options(dplyr.print_min = 6,
+        dplyr.print_max = 6,
+        knitr.graphics.auto_pdf = TRUE)
+```
+# Discussion
+
+<!--chapter:end:discussion.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+set.seed(1014)
+options(digits = 3)
+
+###############################################################################
+## setup
+###############################################################################
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  cache = TRUE,
+  fig.retina = 0.8, # figures are either vectors or 300 dpi diagrams
+  dpi = 300,
+  out.width = "70%",
+  fig.align = 'center',
+  fig.width = 6,
+  fig.asp = 0.618,  # 1 / phi
+  fig.show = "hold",
+  eval.after = 'fig.cap' # so captions can use link to demos
+)
+
+options(dplyr.print_min = 6,
+        dplyr.print_max = 6,
+        knitr.graphics.auto_pdf = TRUE)
+```
+# References
+
+<div id="refs"></div>
+
+
+<!--chapter:end:references.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+set.seed(1014)
+options(digits = 3)
+
+###############################################################################
+## setup
+###############################################################################
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  cache = TRUE,
+  fig.retina = 0.8, # figures are either vectors or 300 dpi diagrams
+  dpi = 300,
+  out.width = "70%",
+  fig.align = 'center',
+  fig.width = 6,
+  fig.asp = 0.618,  # 1 / phi
+  fig.show = "hold",
+  eval.after = 'fig.cap' # so captions can use link to demos
+)
+
+options(dplyr.print_min = 6,
+        dplyr.print_max = 6,
+        knitr.graphics.auto_pdf = TRUE)
+```
+# (PART) Appendix {-}
+
+# Notes
+
+
+<!--chapter:end:notes.Rmd-->
+
