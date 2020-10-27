@@ -10,13 +10,16 @@ rmd_files: [
   index.Rmd,
   preface.Rmd,
 
-  getting-started.Rmd,
-  web-publishing.Rmd,
-  writing-in-bookdown.Rmd,
+  research-proposal.Rmd,
 
   introduction.Rmd,
+  methodology.Rmd,
+  results.Rmd,
+  discussion.Rmd,
 
   references.Rmd,
+
+  notes.Rmd,
 ]
 
 before_chapter_script: "_common.R"
