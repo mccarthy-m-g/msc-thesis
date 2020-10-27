@@ -8,10 +8,10 @@ bookdown::gitbook:
     toc:
       collapse: section
       before: |
-        <li><strong><a href="./">Bookdown Thesis Template</a></strong></li>
+        <li><strong><a href="./">MSc Thesis</a></strong></li>
       after: |
         <li><a href="https://michaelmccarthy.netlify.app" target="blank">Michael McCarthy</a></li>
-    edit: https://github.com/mccarthy-m-g/bookdown-thesis-template/edit/master/%s
+    edit: https://github.com/mccarthy-m-g/msc-thesis/edit/master/%s
     download: ["pdf", "docx"]
 bookdown::pdf_book:
   # base_format: distill::distill_article
