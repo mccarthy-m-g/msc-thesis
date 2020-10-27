@@ -9,7 +9,7 @@ date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
-bibliography: ["references.bib", "r-packages.bib"]
+bibliography: ["`r rbbt::bbt_write_bib('references.json', overwrite = TRUE)`", "r-packages.bib"]
 biblio-style: "apa.csl"
 link-citations: yes
 
