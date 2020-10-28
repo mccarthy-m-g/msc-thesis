@@ -10,13 +10,23 @@
 
 **Broadly:** How do individual differences in EEG activity relate to individual differences in behaviour and cognition?
 
-**Specifically:** Can we (1) identify and differentiate between individuals in a data set purely from their EEG activity? (2) predict individual differences in performance on a task purely from individual differences in EEG activity from before, during, or after the task? (3) is identification and prediction stable across different sessions?
+**Specifically:** Can we (1) identify and differentiate between individuals in a data set purely from their EEG activity? (2) predict individual differences in performance on a task purely from individual differences in EEG activity from before, during, or after the task? Or perhaps from EEG activity from different sessions? (this likely depends on the method we use for identification) (3) is identification and prediction stable across different sessions, and across different "database" and "identification" pairings (e.g., eyes-open rest to task-state; task-state to eyes-closed rest, etc.)?
 
 **Additionally:** Can we use EEG signal variability or complexity as a marker for fingerprinting?
 
 ## Research Need
 
-Why is this research needed? How is this research unique?
+### How is this research unique?
+
+1. There does not appear to be much EEG fingerprinting research examining persistence of accurate identification across sessions using task state EEG. So far I've only found: @armstrongetal_BrainprintAssessingUniqueness_2015.
+
+2. Although there is a fair amount of EEG fingerprinting research, there does not appear to be any (?) EEG fingerprinting research that looks at the link between an individual's fingerprint and their behaviour or cognition. This is likely due to the focus on using EEG fingerprinting for biometric security, rather than for understanding individual differences in EEG activity and what that means for how neural events give rise to cognition and action.
+
+3. There does not appear to be any (?) EEG fingerprinting research (or fMRI fingerprinting research for that matter) that uses EEG signal variability or complexity as a marker for fingerprinting.
+
+4. Most fingerprinting studies (whether EEG or fMRI) only use resting state data, so the present study would help to further identify how EEG activity during a task can improve the ratio of within- to between-subject variability, and, more specifically, would test whether the lexical decision task can draw out variation that is relevant to a phenotype of interest.
+
+### Why is this research needed?
 
 >"There are two main reasons to study individual differences in the course of neuroimaging research. First, of basic scientific concern, more precise descriptions of brain activity in single subjects moves us closer to a mechanistic understanding of how neural events give rise to cognition and action. Second, of practical concern, mapping from individual brains to individual behaviors is a crucial step in developing imaging-based biomarkers with real-world utility." [@finnetal_CanBrainState_2017]
 
