@@ -2,3 +2,100 @@
 
 # CGS-M
 
+## Keywords
+
+Connectomics, Fingerprinting, Individual Differences, Electroencephalography, functional Magnetic Resonance Imaging, Lexical Decision Task
+
+## Research Question
+
+Broadly: How do individual differences in EEG activity relate to individual differences in behaviour and cognition?
+
+Specifically: Can we (1) identify and differentiate between individuals in a data set purely from their EEG activity? (2) predict individual differences in performance on a task purely from individual differences in EEG activity from before, during, or after the task? (3) is identification and prediction stable across different sessions?
+
+Additionally, can we use EEG signal variability or complexity as a marker for fingerprinting?
+
+## Research Need
+
+Why is this research needed? How is this research unique?
+
+"The persistence of individual characteristics in EEG data has yet to be investigated" [@chanetal_ChallengesFuturePerspectives_2018].
+
+Call to use complexity or connectivity for EEG fingerprinting by @chanetal_ChallengesFuturePerspectives_2018: "Neural complexity can be regarded as irregularity of activity in the brain, which is related to brain functions and information processing (McDonough and Nashiro, 2014). Therefore, differences in the complexity of data embedded in EEG can be used to differentiate among entities. Entropy is one measure by which to assess the complexity of the brain, and it has also been used in person authentication (Mu et al., 2016). Calculating entropy at various temporal scales makes it possible to formulate a complete description of the non-linearity in EEG signals (Gao et al., 2015). We suggest using both linear and non-linear features of EEG signals with different temporal scales as a means of increasing accuracy. ... The second approach is the use of connectivity in the human brain, including functional and effective connectivity (Friston, 2011), to assess the interactions between various regions of the brain."
+
+## Related works
+
+
+
+## Fingerprinting Methodology
+
+"EEG-based biometrics are applicable to person recognition applications, including identification and authentication systems. Personal identification systems predict the identity of a user from among all enrolled clients, whereas authentication systems validate the identity claimed by a user. Despite differing purposes, both systems make decisions based on the EEG features of the user and all clients in the database and therefore share the following four components: a database, an EEG acquisition system, a signal preprocessing system, and a feature extraction system. ... The performance of EEG-based person recognition systems relies on the design of signal acquisition protocols, feature extraction methods, and classification techniques." [@chanetal_ChallengesFuturePerspectives_2018].
+
+"Databases impose four basic challenges: (1) number of users: as the number of subjects increases, it becomes increasingly difficult for the system to accurately classify users. Previous studies have used between 3 and 120 participants. ... (3) Variations at the individual level: most previous studies collected data from individual subjects once only. However, as mentioned previously, the brain changes over time and one’s mental state can have a tremendous influence on brain activity." [@chanetal_ChallengesFuturePerspectives_2018].
+
+"Generally, protocols involving tasks are more reproducible than those without tasks, such as resting-state brain signals. Furthermore, protocols that involve simple tasks based on sensory inputs are more reproducible than those with complex tasks requiring cognitive processing. However, there is a tradeoff between reproducibility and distinctiveness. Protocols capable of evoking brain activity patterns with personal characteristics are regarded as particularly suitable. Brain activity patterns generated during cognitive tasks are distinctive between individuals, which makes them useful in biometric systems; however, these tasks also tend to be time-consuming." [@chanetal_ChallengesFuturePerspectives_2018].
+
+In evaluating fingerprinting accuracy it is important that: "(1) Testing data should be independent or nearly independent from the training data. ... (2) Additional indices of performance should be reported. ... (3) Researchers report the duration of the EEG data used or the information transfer rate (ITR). ... (4) In studies with a small sample size, the accuracy of results should be tested using statistical methods that take the size of the sample as well as variations between subjects into account." [@chanetal_ChallengesFuturePerspectives_2018].
+
+"The problem of template aging can be overcome by ensuring the completeness of the representation for each enrolled client prior to the training of classifiers. This means that for each individual, EEG data obtained under various conditions and at different times should be included in the training data sets. ... e.g., In recent developments of biometrics in smartphone authentication, the models used for face or fingerprint recognition are adjusted during every login procedure. ... We therefore strongly recommend the use of longitudinal EEG acquisition and performance evaluation during training steps in order to improve the temporal persistence of EEG-based biometric systems." [@chanetal_ChallengesFuturePerspectives_2018].
+
+"EEG measurements can be affected by psychological and physiological factors. ... Thus, developing a stable and effective EEG-based biometric system requires an understanding of the factors affecting EEG, as well as a means of selecting EEG features with high stability and distinctiveness. ... This model also makes it possible to predict changes in features, thereby enabling the biometric system to maintain high recognition accuracy over time. ... The accumulation of abundant knowledge concerning the influence of various factors makes it possible for researchers to build a model capable of making accurate predictions of EEG features under varying conditions. The use of a prediction model in conjunction with feature augmentation could greatly reduce the time required to obtain training data." [@chanetal_ChallengesFuturePerspectives_2018].
+
+## Resting State Studies
+
+### EEG Single Session
+
+@laroccaetal_HumanBrainDistinctiveness_2014 proposed a person identification system using functional connectivity during eyes-closed (EC) and eyes-open (EO) conditions as features. They achieved 100% recognition accuracy among 108 subjects.
+
+@thomasvinod_EEGBasedBiometricAuthentication_2018 proposed a person authentication system using the power spectrum density (PSD) of resting-state EEG signals as features. They achieved an equal error rate (EER) of just 0.008 among 70 subjects.
+
+### EEG Longitudinal
+
+@marcelmillan_PersonAuthenticationUsing_2007 found that the half total error rate (HTER) of their EEG-based authentication system increased from 7.1 to 36.2 within just 3 days.
+
+@huetal_RealTimeElectroencephalogramEEG_2011, found that the true positive rate (TAR) after a 1-day span was 94.60%; however, this dropped to 83.64% after a span of 1 week and to 78.20% after 6 months.
+
+@kostilekstastny_EEGBiometricIdentification_2012 proposed a person authentication system using movement-related EEG signals during rest. They achieved up to 98% recognition accuracy for a single session, and up to 87.1% accuracy approximately one year later.
+
+@maioranaetal_PermanenceEEGSignals_2016 proposed a person authentication system using AR modelling, power spectrum density, and coherence of eyes-closed (EC) and eyes-open (EO) resting-state EEG signals as features. They achieved up to recognition accuracy for a single session, one week later, and 34 days later (no percentage given).
+
+## Task State Studies
+
+### EEG Single Session
+
+@ruiz-blondetetal_CEREBRENovelMethod_2016 proposed a person identification system using tasks known to elicit event-related potentials (ERPs) from various functional brain systems. They achieved 100% recognition among 50 subjects.
+
+### EEG Longitudinal
+
+@armstrongetal_BrainprintAssessingUniqueness_2015 proposed a person authentication system using several pattern classifiers applied to event-related potentials (ERPs) representing the response of individuals to a stream of text designed to be idiosyncratically familiar to different individuals. They achieved 97% recognition accuracy among 45 subjects. This dropped to 89% accuracy among 30 subjects after 5-40 days, and rose to 93% accuracy among 15 subjects after 134-188 days.
+
+## Misc
+
+What will the study look like?
+
+How is the study unique?
+
+get a one paragraph description of what my thesis is about. then send that to andrea. focus on big picture and differentiate it from the existing literature—if people have done a lot of work linking fingerprinting to cognition then we have to work around how the project is unique; if there isn’t much work linking it to cognition then we have more room to stake out room for the study. And LDT is a good task to link to performance since it’s well understood. Sending a draft that doesn’t have to be perfect.
+
+tie brain variability/complexity into fingerprinting; ask Amir about his recently published graph theory paper
+
+look at EEG fingerprinting papers and identify the best methods
+
+How does the brain switch from task to resting, and the switch between the two. and we can justify this with Finn’s manipulating brain state paper
+
+EEG fingerprinting:
+
+- @albuquerqueetal_EEGBasedBiometricsChallenges_2018;
+- @chanetal_ChallengesFuturePerspectives_2018;
+- @demurufraschini_EEGFingerprintingSubjectspecific_2020;
+- @fraschinietal_RobustnessFunctionalConnectivity_2019;
+- @kongetal_EEGFingerprintsPhase_2019;
+- @laroccaetal_EEGBiometricsIndividual_2012
+
+fMRI fingerprinting:
+
+- @finnetal_FunctionalConnectomeFingerprinting_2015
+
+manipulating brain state:
+
+- @finnetal_CanBrainState_2017
+
