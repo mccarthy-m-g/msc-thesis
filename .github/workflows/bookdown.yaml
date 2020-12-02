@@ -26,9 +26,9 @@ jobs:
         with:
           r-version: ${{ matrix.config.r }}
 
-      - name: Install pandoc and pandoc citeproc
+      - name: Install pandoc 2.10.1 and pandoc citeproc
         run: |
-          brew install pandoc
+          brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/580dda16017f1cd4483c73a65d1a38c841e3f56a/Formula/pandoc.rb
           brew install pandoc-citeproc
 
       - name: Cache Renv packages
