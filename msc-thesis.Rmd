@@ -9,7 +9,7 @@ date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
-bibliography: ["`r rbbt::bbt_write_bib('references.json', overwrite = TRUE)`", "r-packages.bib"]
+bibliography: ["`r try(rbbt::bbt_write_bib('references.json', overwrite = TRUE))`", "references.json", "r-packages.bib"]
 biblio-style: "apa.csl"
 link-citations: yes
 
@@ -206,7 +206,21 @@ options(dplyr.print_min = 6,
 
 # CGS-M
 
-@holbourn_MechanicsHeadInjuries_1943
+## Abstract
+
+Current efforts to understand how the human brain causes individuals to behave differently have focused on neuroimaging methods that treat brain activity as static in time. However, brain activity is inherently variable from moment to moment, and this variability appears to provide the neural substrate for optimizing behaviour in our often unpredictable environment. This suggests that paradigms involving variable tasks could be used as neural “stress tests” that emphasize individual-specific features of brain activity that relate to differences in behaviour. Using electroencephalographic data from the Healthy Brain Network (n = 2,630), the proposed research will compare static (functional connectivity) and variable (dynamic functional connectivity) metrics of brain activity to test (1) how these metrics capture individual-specific features of intrinsic and task-evoked brain states during naturalistic and cognitive tasks, and (2) how each metric performs at predicting individual differences in cognitive ability and behaviour. I expect that each metric will capture different aspects of individual-specific features of brain activity. I also expect dynamic functional connectivity to be better at predicting individual differences in cognitive ability and behaviour, due to it capturing richer information than functional connectivity. The proposed research accomplishes two important goals: First, it addresses several calls in the literature to explore alternative metrics and paradigms that may move us closer to understanding the neural causes of differences in behaviour. Second it lays the empirical groundwork for future neuroscience research seeking to develop neuroimaging-based biomarkers with real-world utility in areas such as biometrics and human lifespan development.
+
+**Keywords:** Brain-Behaviour Relationship, Intrinsic Brain Activity, Task-evoked Brain Activity, Brain Dynamics, Brain Signal Variability, State-to-State Transitions, Individual Differences, Behaviour Prediction, Functional Connectivity, Electroencephalography (EEG)
+
+## Research Proposal
+
+A central goal of human neuroscience is to understand how the brain causes behaviour by measuring and interpreting brain activity under a variety of conditions [@adolphs_UnsolvedProblemsNeuroscience_2015]. The common form to this approach involves averaging brain and behavioural data across individuals to infer how general patterns of brain activity relate to some aspect of behaviour. However, this approach has two shortcomings: First, it encourages a reactive view of brain function, overemphasizing the role of task-evoked factors despite the strongly intrinsic and only moderately state-dependent nature of brain activity [@grattonetal_FunctionalBrainNetworks_2018]. Second, it does not address how *individual brains* are linked to *individual differences* in behaviour, as averaging data obscures individual-specific features of brain activity and behaviour [@speelmanmcgann_HowMeanMean_2013]. Nonetheless, emerging research has revealed that differences in individual-specific features of intrinsic and task-evoked brain activity are stable [@grattonetal_FunctionalBrainNetworks_2018] and predictive of individual differences in cognitive ability [@finnetal_FunctionalConnectomeFingerprinting_2015] and behaviour [@seitzmanetal_TraitlikeVariantsHuman_2019]. Accordingly, these differences should no longer be ignored when studying how the human brain causes behaviour.
+
+Current efforts to address this gap have used neuroimaging methods that treat intrinsic and task-evoked activity in brain areas [@elliottetal_WhatTestRetestReliability_2020] or networks [@mareketal_ReproducibleBrainWideAssociation_2020] as static in time; however, brain activity is inherently variable from moment to moment [@faisaletal_NoiseNervousSystem_2008], and this variability appears to provide the substrate for effective brain function, permitting the adaptability and efficiency needed to optimize responses to our often unpredictable environment [@garrettetal_MomenttomomentBrainSignal_2013]. Intriguingly, this suggests that paradigms involving transitions from intrinsic to task-evoked states could be used as “stress tests” that emphasize individual differences in brain function optimization in response to changing conditions [see @finnetal_CanBrainState_2017]. Therefore, the objective of the proposed research is to compare static and variable metrics of brain activity in order to test (1) how these metrics capture individual-specific features of intrinsic and task-evoked brain states, and (2) how each metric performs at predicting individual differences in cognitive ability and behaviour.
+
+I will use data from the Healthy Brain Network [@alexanderetal_OpenResourceTransdiagnostic_2017] to test the relationship between intrinsic and task-evoked brain states, cognitive ability, and behaviour. The Healthy Brain Network is a high-quality open data set containing cognitive ability data measured with the Wechsler Intelligence Scale [@wechsler_WechslerAdultIntelligence_2008; @wechsler_WechslerIntelligenceScale_2014], as well as electroencephalographic (EEG) data collected during intrinsic (resting, natural movie watching) and task-evoked (learning, decision-making, attention) brain states, for 2,630 participants (ages 5-21). Within each participant, I will use *functional connectivity* [@bastosschoffelen_TutorialReviewFunctional_2016] and *dynamic functional connectivity* [@hutchisonetal_DynamicFunctionalConnectivity_2013] to capture *time-averaged* and *time-variable* connectivity between brain regions that share functional properties during intrinsic and task-evoked states. I will then use a two-fold cross-validation approach [see @kriegeskorte_CrossvalidationBrainImaging_2015] to (1) select connectivity features strongly correlated with cognitive ability and behaviour, (2) build a model based on half the participants, and (3) use the model to predict cognitive ability and behaviour of the remaining participants. I expect that the connectivity metrics will provide orthogonal but complimentary information about individual-specific features of intrinsic and task-evoked states, reflecting each metric’s ability to capture a different aspect of brain function [@hutchisonetal_DynamicFunctionalConnectivity_2013]. I also expect dynamic functional connectivity to be better at predicting individual differences in cognitive ability and behaviour, due to it capturing richer information about brain function than functional connectivity [@hutchisonetal_DynamicFunctionalConnectivity_2013].
+
+By capturing individual-specific features of intrinsic and task-evoked brain states and using these to predict cognitive ability and behaviour within a heterogeneous population, the proposed research accomplishes two important goals: First, it addresses several calls in the literature [@elliottetal_WhatTestRetestReliability_2020; @finnetal_FunctionalConnectomeFingerprinting_2015; @finnetal_CanBrainState_2017; @garrettetal_MomenttomomentBrainSignal_2013; @grattonetal_FunctionalBrainNetworks_2018; @mareketal_ReproducibleBrainWideAssociation_2020; @seitzmanetal_TraitlikeVariantsHuman_2019; @speelmanmcgann_HowMeanMean_2013] to explore alternative metrics and paradigms that may move us closer to understanding the neurological causes of differences in behaviour. Second it lays the empirical groundwork for future neuroscience research seeking to develop neuroimaging-based biomarkers with real-world utility in areas such as biometrics [@chanetal_ChallengesFuturePerspectives_2018] and human lifespan development [@garrettetal_MomenttomomentBrainSignal_2013]. An in-depth version of this research proposal will be preregistered on the Open Science Framework [@centerforopenscience_OpenScienceFramework_nd] prior to analyses, and all EEG preprocessing scripts, analysis scripts, and written work will be shared openly.
 
 <!--chapter:end:research-proposal.Rmd-->
 
@@ -235,7 +249,7 @@ options(dplyr.print_min = 6,
         dplyr.print_max = 6,
         knitr.graphics.auto_pdf = TRUE)
 ```
-# (PART) Example Chapters {-}
+# (PART) Thesis {-}
 
 # Introduction
 
@@ -360,7 +374,6 @@ options(dplyr.print_min = 6,
 
 <div id="refs"></div>
 
-
 <!--chapter:end:references.Rmd-->
 
 ```{r include=FALSE, cache=FALSE}
@@ -391,6 +404,155 @@ options(dplyr.print_min = 6,
 # (PART) Appendix {-}
 
 # Notes
+
+
+## Keywords
+
+*Connectomics, Fingerprinting, Individual Differences, Electroencephalography, functional Magnetic Resonance Imaging, Lexical Decision Task, Resting State*
+
+## Research Question
+
+**Broadly:** How do individual differences in EEG signal (e.g., power spectra, variability and complexity, graph theory metrics) relate to individual differences in behaviour and cognition?
+
+**Specifically:** Can we (1) identify and differentiate between individuals in a data set purely from their EEG signal? (2) predict individual differences in performance on a task purely from individual differences in EEG signal from before, during, or after the task? Or perhaps from EEG signal from different sessions? (this likely depends on the method we use for identification) (3) is identification and prediction stable across different sessions, and across different "database" and "identification" pairings (e.g., eyes-open rest to task-state; task-state to eyes-closed rest, etc.)?
+
+## Research Need
+
+### How is this research unique?
+
+1. There does not appear to be much EEG fingerprinting research examining persistence of accurate identification across sessions using task state EEG. So far I've only found: @armstrongetal_BrainprintAssessingUniqueness_2015.
+
+2. Although there is a fair amount of EEG fingerprinting research, there does not appear to be any (?) EEG fingerprinting research that looks at the link between an individual's fingerprint and their behaviour or cognition. This is likely due to the focus on using EEG fingerprinting for biometric security, rather than for understanding individual differences in EEG activity and what that means for how neural events give rise to cognition and action.
+
+3. There does not appear to be any (?) EEG fingerprinting research (or fMRI fingerprinting research for that matter) that uses EEG signal variability or complexity as a marker for fingerprinting.
+
+4. Most fingerprinting studies (whether EEG or fMRI) only use resting state data, so the present study would help to further identify how EEG activity during a task can improve the ratio of within- to between-subject variability, and, more specifically, would test whether the lexical decision task can draw out variation that is relevant to a phenotype of interest.
+
+### Why is this research needed?
+
+>"There are two main reasons to study individual differences in the course of neuroimaging research. First, of basic scientific concern, more precise descriptions of brain activity in single subjects moves us closer to a mechanistic understanding of how neural events give rise to cognition and action. Second, of practical concern, mapping from individual brains to individual behaviors is a crucial step in developing imaging-based biomarkers with real-world utility." [@finnetal_CanBrainState_2017]
+
+"Mapping from individual brains to individual behaviors is a crucial step in developing imaging-based biomarkers with real-world utility" seems like a nice way to phrase the real-world importance of my project, since I'll be working with healthy subjects, but ultimately this work can be a stepping stone to help clinical populations.
+
+>"The persistence of individual characteristics in EEG data has yet to be investigated" [@chanetal_ChallengesFuturePerspectives_2018].
+
+>Call to use complexity or connectivity for EEG fingerprinting by @chanetal_ChallengesFuturePerspectives_2018: "Neural complexity can be regarded as irregularity of activity in the brain, which is related to brain functions and information processing (McDonough and Nashiro, 2014). Therefore, differences in the complexity of data embedded in EEG can be used to differentiate among entities. Entropy is one measure by which to assess the complexity of the brain, and it has also been used in person authentication (Mu et al., 2016). Calculating entropy at various temporal scales makes it possible to formulate a complete description of the non-linearity in EEG signals (Gao et al., 2015). We suggest using both linear and non-linear features of EEG signals with different temporal scales as a means of increasing accuracy. ... The second approach is the use of connectivity in the human brain, including functional and effective connectivity (Friston, 2011), to assess the interactions between various regions of the brain."
+
+>"Much previous work has been concerned with separating the functional connectivity signal into state versus trait components: for example, by investigating the test-retest reliability of resting-state connectivity within individuals (depending on the choices of connectivity analysis and reliability metric, it’s generally low to moderate (Birn et al., 2013; Braun et al., 2012; Shehzad et al., 2009; Zuo and Xing, 2014), or comparing group-averaged network organization across brain states (it’s grossly similar between rest and any of several tasks (Cole 10 et al., 2014; Smith et al., 2009)). *However, there is little work at the intersection of these lines of research, investigating how brain state affects test-retest reliability of single subjects, or measurements of individual differences across subjects.*" [@finnetal_CanBrainState_2017]
+
+>"The end goal of most neuroimaging research into individual differences is to relate brain measures to behavior. Ultimately, we should be striving to not simply report correlations between connectivity patterns and phenotypes, but to build predictive models that can take in neuroimaging information from a previously unseen subject and predict something about their present or future behavior, such as cognitive ability, risk for illness, or response to treatment, to name a few (Bach et al., 2013; Gabrieli et al., 2015; Lo et al., 2015; Whelan and Garavan, 2014). With this in mind, *the question is not which states maximize the ratio of within- to between-subject variability in and of itself, but rather which states maximize this ratio while drawing out variation that is relevant to a phenotype of interest*. To this end, investigators might try varying the input to connectivity-based predictive models (Shen et al., in press) by testing several states and determining which yields the best behavioral prediction, using data sets such as HCP and others that contain multiple scan conditions and behavioral measures for each subject." [@finnetal_CanBrainState_2017]
+
+> "There is growing recognition in human neuroscience that mean-based approaches, in which data are averaged across many individuals, may obscure more than they reveal about brain-behavior relationships (Speelman and McGann, 2013). In fact, the perceived “universality” of functional brain regions and networks may be more an epiphenomenon of how we analyze our data than a reflection of how individual brains actually work. ... It is worth exploring alternative paradigms for individual differences research, as other brain states may afford an improved ratio of within- to between-subject variability, and/or enhance the individual connectivity signature in networks of interest. A better understanding of how brain state affects measurements of individual differences is important from a cognitive neuroscience perspective, and may increase our chances of finding imaging-based biomarkers with translational utility." [@finnetal_CanBrainState_2017]
+
+## Related works (Works I can build off or extend)
+
+
+
+## Fingerprinting Methodology
+
+Identification experiments often require that a given connectivity profile acquired in one session
+is matched to the same individual’s profile (i.e., you need an index to compare individuals to).
+
+>"EEG-based biometrics are applicable to person recognition applications, including identification and authentication systems. Personal identification systems predict the identity of a user from among all enrolled clients, whereas authentication systems validate the identity claimed by a user. Despite differing purposes, both systems make decisions based on the EEG features of the user and all clients in the database and therefore share the following four components: a database, an EEG acquisition system, a signal preprocessing system, and a feature extraction system. ... The performance of EEG-based person recognition systems relies on the design of signal acquisition protocols, feature extraction methods, and classification techniques." [@chanetal_ChallengesFuturePerspectives_2018].
+
+>"Databases impose four basic challenges: (1) number of users: as the number of subjects increases, it becomes increasingly difficult for the system to accurately classify users. Previous studies have used between 3 and 120 participants. ... (3) Variations at the individual level: most previous studies collected data from individual subjects once only. However, as mentioned previously, the brain changes over time and one’s mental state can have a tremendous influence on brain activity." [@chanetal_ChallengesFuturePerspectives_2018].
+
+>"Generally, protocols involving tasks are more reproducible than those without tasks, such as resting-state brain signals. Furthermore, protocols that involve simple tasks based on sensory inputs are more reproducible than those with complex tasks requiring cognitive processing. However, there is a tradeoff between reproducibility and distinctiveness. Protocols capable of evoking brain activity patterns with personal characteristics are regarded as particularly suitable. Brain activity patterns generated during cognitive tasks are distinctive between individuals, which makes them useful in biometric systems; however, these tasks also tend to be time-consuming." [@chanetal_ChallengesFuturePerspectives_2018].
+
+>In evaluating fingerprinting accuracy it is important that: "(1) Testing data should be independent or nearly independent from the training data. ... (2) Additional indices of performance should be reported. ... (3) Researchers report the duration of the EEG data used or the information transfer rate (ITR). ... (4) In studies with a small sample size, the accuracy of results should be tested using statistical methods that take the size of the sample as well as variations between subjects into account." [@chanetal_ChallengesFuturePerspectives_2018].
+
+>"The problem of template aging can be overcome by ensuring the completeness of the representation for each enrolled client prior to the training of classifiers. This means that for each individual, EEG data obtained under various conditions and at different times should be included in the training data sets. ... e.g., In recent developments of biometrics in smartphone authentication, the models used for face or fingerprint recognition are adjusted during every login procedure. ... We therefore strongly recommend the use of longitudinal EEG acquisition and performance evaluation during training steps in order to improve the temporal persistence of EEG-based biometric systems." [@chanetal_ChallengesFuturePerspectives_2018].
+
+>"EEG measurements can be affected by psychological and physiological factors. ... Thus, developing a stable and effective EEG-based biometric system requires an understanding of the factors affecting EEG, as well as a means of selecting EEG features with high stability and distinctiveness. ... This model also makes it possible to predict changes in features, thereby enabling the biometric system to maintain high recognition accuracy over time. ... The accumulation of abundant knowledge concerning the influence of various factors makes it possible for researchers to build a model capable of making accurate predictions of EEG features under varying conditions. The use of a prediction model in conjunction with feature augmentation could greatly reduce the time required to obtain training data." [@chanetal_ChallengesFuturePerspectives_2018].
+
+>"Hypothetically, what would be the ideal condition for measuring individual differences?
+Simply maximizing between-subject variability—i.e., making subjects look as different as
+possible from one another—is not necessarily the answer. Rather, the optimal condition should
+make subjects look as different as possible while also retaining the most important features of
+each individual. ... There are two ways to boost identifiability (a metric that is, in this case, subjective, but is a proxy for trait-level variance associated with some phenotype of interest): by exaggerating the most prominent features of each individual (the “caricature” condition), which incidentally makes subjects look more different from one another, or by blurring irrelevant features while retaining and enriching relevant ones (“selective enhancement”)." [@finnetal_CanBrainState_2017]
+
+>"Certain in-scanner tasks could act as neuropsychiatric “stress tests” to enhance individual differences in the general population, or, in at-risk individuals, to reveal abnormal patterns of brain activity before they show up at rest. While a variety of tasks might serve this role, naturalistic paradigms—e.g., having subjects watch a movie or listen to a story in the scanner—are especially intriguing candidates. By imposing a standardized yet engaging stimulus on all subjects, naturalistic tasks evoke rich patterns of brain activity. These patterns lend themselves to functional connectivity analysis as well as other data-driven techniques such as inter-subject correlation (ISC) (Hasson et al., 2004) and inter-subject functional connectivity (ISFC) (Simony et al., 2016), which are model-free ways to isolate stimulus-dependent brain activity from spontaneous activity and noise. ... While naturalistic tasks are promising, any task that elicits variable brain activity and/or behavior across subjects is a worthwhile candidate." [@finnetal_CanBrainState_2017]
+
+>"Much of the variance in functional connectivity is intrinsic to an individual, and not associated with how the brain is engaged during scanning. Similar results have now been reported using other data sets (Airan et al., 2016). ... However, our exploratory analysis showed that between-subject variability does, in fact, change with brain state. Overall, individuals tended to look more similar during tasks than during rest. Additionally, in nearly all conditions, females were more similar to other females than males were to other males. ... males. *These results suggest that investigators should take into account sex when choosing conditions to maximize individual variability:* tasks that maximize variability in females may not do the same for males, and vice versa. This may be especially important when studying traits relevant to neuropsychiatric illnesses that disproportionately affect one sex or the other." [@finnetal_CanBrainState_2017]
+
+>"Individual differences do, in fact, change depending on the condition in which they are measured. ... Interestingly, conditions that make subjects look more similar to one another also make better databases in identification experiments. ... The high correlation between database score and between-subject similarity suggests that *task conditions mainly serve to reduce intra-individual variability, while preserving meaningful inter-individual variance* (i.e., variance related to true individual differences)." [@finnetal_CanBrainState_2017]
+
+>"Of note, linking imaging measures to behavior crucially depends on choosing the right behavior." [@finnetal_CanBrainState_2017]
+
+## Resting State Studies
+
+### EEG Single Session
+
+@laroccaetal_HumanBrainDistinctiveness_2014 proposed a person identification system using functional connectivity during eyes-closed (EC) and eyes-open (EO) conditions as features. They achieved 100% recognition accuracy among 108 subjects.
+
+@thomasvinod_EEGBasedBiometricAuthentication_2018 proposed a person authentication system using the power spectrum density (PSD) of resting-state EEG signals as features. They achieved an equal error rate (EER) of just 0.008 among 70 subjects.
+
+### EEG Longitudinal
+
+@marcelmillan_PersonAuthenticationUsing_2007 found that the half total error rate (HTER) of their EEG-based authentication system increased from 7.1 to 36.2 within just 3 days.
+
+@huetal_RealTimeElectroencephalogramEEG_2011, found that the true positive rate (TAR) after a 1-day span was 94.60%; however, this dropped to 83.64% after a span of 1 week and to 78.20% after 6 months.
+
+@kostilekstastny_EEGBiometricIdentification_2012 proposed a person authentication system using movement-related EEG signals during rest. They achieved up to 98% recognition accuracy for a single session, and up to 87.1% accuracy approximately one year later.
+
+@maioranaetal_PermanenceEEGSignals_2016 proposed a person authentication system using AR modelling, power spectrum density, and coherence of eyes-closed (EC) and eyes-open (EO) resting-state EEG signals as features. They achieved up to recognition accuracy for a single session, one week later, and 34 days later (no percentage given).
+
+## Task State Studies
+
+### EEG Single Session
+
+@ruiz-blondetetal_CEREBRENovelMethod_2016 proposed a person identification system using tasks known to elicit event-related potentials (ERPs) from various functional brain systems. They achieved 100% recognition among 50 subjects.
+
+### EEG Longitudinal
+
+@armstrongetal_BrainprintAssessingUniqueness_2015 proposed a person authentication system using several pattern classifiers applied to event-related potentials (ERPs) representing the response of individuals to a stream of text designed to be idiosyncratically familiar to different individuals. They achieved 97% recognition accuracy among 45 subjects. This dropped to 89% accuracy among 30 subjects after 5-40 days, and rose to 93% accuracy among 15 subjects after 134-188 days.
+
+### fMRI Single Session
+
+@finnetal_FunctionalConnectomeFingerprinting_2015 proposed a person identification system using functional connectivity during rest and task states across pairs of scans consisting of one “target” and one “database” session, with the requirement that the target and database sessions be taken from different days. They achieved 92.9% identification accuracy among 126 subjects using the whole-brain connectivity matrix.
+
+@amicogoni_QuestIdentifiabilityHuman_2018 proposed a person identification system using principle component analysis (PCA) to improve the individual fingerprint in functional connectomes of rest and task state from a group-level perspective. They achieved identification accuracy ranging from 92%-98% among 100 subjects.
+
+### fMRI Longitudinal
+
+@zhangetal_FunctionalConnectomePhase_2019 proposed a person identification system using phase synchrony during resting state. They achieved 86% identification accuracy among 205 subjects scanned after an average of 2.63 years.
+
+## Fingerprinting, Behaviour, and Cognition
+
+@finnetal_FunctionalConnectomeFingerprinting_2015 ...
+
+@biazolietal_CommentaryFunctionalConnectome_2017 proposed a person identification system using single subject connectome information (whole brain functional connectivity) included directly into their model, testing whether the information conveyed by a given connectome fingerprint could predict the intelligence quotient, cognitive function and also emotional and behavioral problems at the individual level. Among 655 subjects, they found that individuals with similar connectomes had (i) similar ages; (ii) similar intelligence quotients; (iii) analogous performance on tests measuring executive function; (iv) and similar levels of behavioral problems.
+
+## Misc
+
+What will the study look like?
+
+How is the study unique?
+
+get a one paragraph description of what my thesis is about. then send that to andrea. focus on big picture and differentiate it from the existing literature—if people have done a lot of work linking fingerprinting to cognition then we have to work around how the project is unique; if there isn’t much work linking it to cognition then we have more room to stake out room for the study. And LDT is a good task to link to performance since it’s well understood. Sending a draft that doesn’t have to be perfect.
+
+tie brain variability/complexity into fingerprinting; ask Amir about his recently published graph theory paper
+
+look at EEG fingerprinting papers and identify the best methods
+
+How does the brain switch from task to resting, and the switch between the two. and we can justify this with Finn’s manipulating brain state paper
+
+EEG fingerprinting:
+
+- @albuquerqueetal_EEGBasedBiometricsChallenges_2018;
+- @chanetal_ChallengesFuturePerspectives_2018;
+- @demurufraschini_EEGFingerprintingSubjectspecific_2020;
+- @fraschinietal_RobustnessFunctionalConnectivity_2019;
+- @kongetal_EEGFingerprintsPhase_2019;
+- @laroccaetal_EEGBiometricsIndividual_2012
+
+fMRI fingerprinting:
+
+- @finnetal_FunctionalConnectomeFingerprinting_2015
+
+manipulating brain state:
+
+- @finnetal_CanBrainState_2017
 
 
 <!--chapter:end:notes.Rmd-->
