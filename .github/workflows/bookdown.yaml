@@ -27,7 +27,9 @@ jobs:
           r-version: ${{ matrix.config.r }}
 
       - name: Setup pandoc
-        uses: r-lib/actions/setup-pandoc@master
+        uses: r-lib/actions/setup-pandoc@v1
+        with:
+          pandoc-version: '2.10.1'
 
       - name: Cache Renv packages
         uses: actions/cache@v1
